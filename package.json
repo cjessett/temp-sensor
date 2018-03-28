@@ -4,6 +4,9 @@
   "description": "raven ridge nursery thermometer",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "sudo \"$(which node)\" index.js"
+  },
   "dependencies": {
     "aws-iot-device-sdk": "^2.2.1",
     "johnny-five": "^0.14.2",
