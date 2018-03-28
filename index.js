@@ -21,7 +21,6 @@ board.on('ready', function() {
 	thingShadows.on('connect', function() {
 		thingShadows.register('raven-ridge-nursery-thermometer', {}, function() {
 			thermometer.on('change', function() {
-				console.log(this.fahrenheit)
 		        	thingShadows.update('raven-ridge-nursery-thermometer', { state: { reported: { temp: this.fahrenheit } } }); 
 			});
 		});
