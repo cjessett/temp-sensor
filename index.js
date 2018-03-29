@@ -22,7 +22,7 @@ board.on('ready', function() {
 		thingShadows.register('raven-ridge-nursery-thermometer', {}, function() {
 			thermometer.on('change', function() {
 		        	thingShadows.update('raven-ridge-nursery-thermometer', { state: { reported: { temp: this.fahrenheit } } }); 
-				if (this.fahrenheit < 39) thingShadows.publish('cold', this.fahrenheit);
+				if (this.fahrenheit < 40) thingShadows.publish('cold', this.fahrenheit.toString());
 			});
 		});
 	});
