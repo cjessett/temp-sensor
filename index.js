@@ -6,11 +6,11 @@ const board = new five.Board({ io: new Raspi() });
 
 
 const config = {
-	keyPath: 'certs/cb8d3158dc-private.pem.key',
-	certPath: 'certs/cb8d3158dc-certificate.pem.crt',
+	keyPath: 'certs/raven-ridge-nursery-thermometer.private.key',
+	certPath: 'certs/raven-ridge-nursery-thermometer.cert.pem',
 	caPath: 'certs/root-CA.crt',
 	clientId: 'raven-ridge-nursery-thermometer',
-	host: 'a1sja93rj6djc4.iot.us-east-2.amazonaws.com',
+	host: 'a1sja93rj6djc4.iot.us-west-2.amazonaws.com',
 };
 
 
@@ -22,6 +22,7 @@ board.on('ready', function() {
 		thingShadows.register('raven-ridge-nursery-thermometer', {}, function() {
 			thermometer.on('change', function() {
 		        	thingShadows.update('raven-ridge-nursery-thermometer', { state: { reported: { temp: this.fahrenheit } } }); 
+				if (this.fahrenheit < 39) thingShadows.publish('cold', this.fahrenheit);
 			});
 		});
 	});
